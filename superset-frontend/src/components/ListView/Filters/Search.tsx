@@ -18,11 +18,11 @@
  */
 import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { t, styled } from '@superset-ui/core';
-import Icons from 'src/components/Icons';
 import { AntdInput } from 'src/components';
 import { SELECT_WIDTH } from 'src/components/ListView/utils';
 import { FormLabel } from 'src/components/Form';
 import InfoTooltip from 'src/components/InfoTooltip';
+import { SearchOutlined } from '@ant-design/icons';
 import { BaseFilter, FilterHandler } from './Base';
 
 interface SearchHeaderProps extends BaseFilter {
@@ -36,12 +36,9 @@ const Container = styled.div`
   width: ${SELECT_WIDTH}px;
 `;
 
-const SearchIcon = styled(Icons.Search)`
-  color: ${({ theme }) => theme.colors.grayscale.light1};
-`;
-
 const StyledInput = styled(AntdInput)`
-  border-radius: ${({ theme }) => theme.gridUnit}px;
+  border-radius: ${({ theme }) => theme.gridUnit * 2}px;
+  height: ${({ theme }) => theme.gridUnit * 9}px;
 `;
 
 function SearchFilter(
@@ -89,7 +86,7 @@ function SearchFilter(
         onChange={handleChange}
         onPressEnter={handleSubmit}
         onBlur={handleSubmit}
-        prefix={<SearchIcon iconSize="l" />}
+        suffix={<SearchOutlined />}
       />
     </Container>
   );

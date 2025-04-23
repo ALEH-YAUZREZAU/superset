@@ -21,7 +21,6 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Alert from 'src/components/Alert';
 import cx from 'classnames';
 import Button from 'src/components/Button';
-import Icons from 'src/components/Icons';
 import IndeterminateCheckbox from 'src/components/IndeterminateCheckbox';
 import Pagination from 'src/components/Pagination';
 import TableCollection from 'src/components/TableCollection';
@@ -38,6 +37,7 @@ import {
 } from './types';
 import { ListViewError, useListViewState } from './utils';
 import { EmptyStateBig, EmptyStateProps } from '../EmptyState';
+import { AppstoreFilled, BarsOutlined } from '@ant-design/icons';
 
 const ListViewStyles = styled.div`
   text-align: center;
@@ -137,27 +137,26 @@ const bulkSelectColumnConfig = {
 };
 
 const ViewModeContainer = styled.div`
-  padding-right: ${({ theme }) => theme.gridUnit * 4}px;
   margin-top: ${({ theme }) => theme.gridUnit * 5 + 1}px;
   white-space: nowrap;
   display: inline-block;
 
   .toggle-button {
     display: inline-block;
-    border-radius: ${({ theme }) => theme.gridUnit / 2}px;
-    padding: ${({ theme }) => theme.gridUnit}px;
-    padding-bottom: ${({ theme }) => theme.gridUnit * 0.5}px;
+    border-radius: ${({ theme }) => theme.gridUnit * 2}px;
+    padding: ${({ theme }) => theme.gridUnit * 2}px;
 
+    svg {
+      font-size: 20px;
+      color: ${({ theme }) => theme.colors.primary.base};
+    }
     &:first-of-type {
-      margin-right: ${({ theme }) => theme.gridUnit * 2}px;
+      margin-right: ${({ theme }) => theme.gridUnit * 3}px;
     }
   }
 
   .active {
-    background-color: ${({ theme }) => theme.colors.grayscale.base};
-    svg {
-      color: ${({ theme }) => theme.colors.grayscale.light5};
-    }
+    background-color: ${({ theme }) => theme.colors.secondary.base};
   }
 `;
 
@@ -186,7 +185,7 @@ const ViewModeToggle = ({
       }}
       className={cx('toggle-button', { active: mode === 'card' })}
     >
-      <Icons.CardView />
+      <AppstoreFilled />
     </div>
     <div
       role="button"
@@ -197,7 +196,7 @@ const ViewModeToggle = ({
       }}
       className={cx('toggle-button', { active: mode === 'table' })}
     >
-      <Icons.ListView />
+      <BarsOutlined />
     </div>
   </ViewModeContainer>
 );
@@ -343,9 +342,6 @@ function ListView<T extends object = any>({
       )}
       <div data-test={className} className={`superset-list-view ${className}`}>
         <div className="header">
-          {cardViewEnabled && (
-            <ViewModeToggle mode={viewMode} setMode={setViewMode} />
-          )}
           <div className="controls">
             {filterable && (
               <FilterControls
@@ -363,6 +359,9 @@ function ListView<T extends object = any>({
               />
             )}
           </div>
+          {cardViewEnabled && (
+            <ViewModeToggle mode={viewMode} setMode={setViewMode} />
+          )}
         </div>
         <div className={`body ${rows.length === 0 ? 'empty' : ''}`}>
           {bulkSelectEnabled && (

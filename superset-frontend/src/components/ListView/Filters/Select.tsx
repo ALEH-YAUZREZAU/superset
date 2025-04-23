@@ -22,11 +22,13 @@ import React, {
   forwardRef,
   useImperativeHandle,
 } from 'react';
-import { t } from '@superset-ui/core';
+import { styled, t } from '@superset-ui/core';
 import { Select } from 'src/components';
 import { Filter, SelectOption } from 'src/components/ListView/types';
 import { FormLabel } from 'src/components/Form';
 import AsyncSelect from 'src/components/Select/AsyncSelect';
+import { CaretDownOutlined } from '@ant-design/icons';
+import { theme } from 'src/preamble';
 import { FilterContainer, BaseFilter, FilterHandler } from './Base';
 
 interface SelectFilterProps extends BaseFilter {
@@ -36,6 +38,30 @@ interface SelectFilterProps extends BaseFilter {
   paginate?: boolean;
   selects: Filter['selects'];
 }
+
+const StyledSelect = styled(Select)`
+  .ant-select-selector {
+    border-radius: 8px !important;
+    height: ${({ theme }) => theme.gridUnit * 9}px !important;
+    align-items: center;
+  }
+
+  .ant-select-dropdown {
+    border-radius: 8px !important;
+  }
+`;
+
+const StyledAsyncSelect = styled(AsyncSelect)`
+  .ant-select-selector {
+    border-radius: 8px !important;
+    height: ${({ theme }) => theme.gridUnit * 9}px !important;
+    align-items: center;
+  }
+
+  .ant-select-dropdown {
+    border-radius: 8px !important;
+  }
+`;
 
 function SelectFilter(
   {
@@ -88,7 +114,7 @@ function SelectFilter(
   return (
     <FilterContainer>
       {fetchSelects ? (
-        <AsyncSelect
+        <StyledAsyncSelect
           allowClear
           ariaLabel={typeof Header === 'string' ? Header : name || t('Filter')}
           data-test="filters-select"
@@ -99,9 +125,14 @@ function SelectFilter(
           placeholder={t('Select or type a value')}
           showSearch
           value={selectedOption}
+          suffixIcon={
+            <CaretDownOutlined
+              style={{ color: theme.colors.grayscale.dark1 }}
+            />
+          }
         />
       ) : (
-        <Select
+        <StyledSelect
           allowClear
           ariaLabel={typeof Header === 'string' ? Header : name || t('Filter')}
           data-test="filters-select"
@@ -113,6 +144,11 @@ function SelectFilter(
           placeholder={t('Select or type a value')}
           showSearch
           value={selectedOption}
+          suffixIcon={
+            <CaretDownOutlined
+              style={{ color: theme.colors.grayscale.dark1 }}
+            />
+          }
         />
       )}
     </FilterContainer>

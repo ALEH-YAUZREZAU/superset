@@ -31,22 +31,12 @@ import { MenuObjectProps } from 'src/types/bootstrapTypes';
 const StyledHeader = styled.div`
   margin-bottom: ${({ theme }) => theme.gridUnit * 4}px;
   .header {
-    font-weight: ${({ theme }) => theme.typography.weights.bold};
-    margin-right: ${({ theme }) => theme.gridUnit * 3}px;
-    text-align: left;
-    font-size: 18px;
-    padding: ${({ theme }) => theme.gridUnit * 3}px;
-    display: inline-block;
-    line-height: ${({ theme }) => theme.gridUnit * 9}px;
+    font-size: 19px;
+    font-weight: 500;
   }
   .nav-right {
     display: flex;
     align-items: center;
-    padding: ${({ theme }) => theme.gridUnit * 3.5}px 0;
-    margin-right: ${({ theme }) => theme.gridUnit * 3}px;
-    float: right;
-    position: absolute;
-    right: 0;
     ul.ant-menu-root {
       padding: 0px;
     }
@@ -58,6 +48,15 @@ const StyledHeader = styled.div`
       }
     }
   }
+  .css-1sd38vn-button + .superset-button {
+    padding: 8px;
+    margin-left: 16px;
+  }
+
+  .css-nhg03w-button + .superset-button {
+    margin-left: 16px;
+  }
+
   .nav-right-collapse {
     display: flex;
     align-items: center;
@@ -68,10 +67,14 @@ const StyledHeader = styled.div`
   }
   .menu {
     background-color: ${({ theme }) => theme.colors.grayscale.light5};
+    display: flex;
+    justify-content: space-between;
+    padding: 24px 40px;
     .ant-menu-horizontal {
       line-height: inherit;
       .ant-menu-item {
         border-bottom: none;
+        color: ${({ theme }) => theme.colors.primary.base};
         &:hover {
           border-bottom: none;
           text-decoration: none;

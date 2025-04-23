@@ -60,7 +60,7 @@ const defaultTheme = {
       help: '#737373',
     },
     primary: {
-      base: '#20A7C9',
+      base: '#0663EF',
       dark1: '#1A85A0',
       dark2: '#156378',
       light1: '#79CADE',
@@ -70,7 +70,7 @@ const defaultTheme = {
       light5: '#F3F8FA',
     },
     secondary: {
-      base: '#444E7C',
+      base: '#0663EF14',
       dark1: '#363E63',
       dark2: '#282E4A',
       dark3: '#1B1F31',
@@ -81,7 +81,7 @@ const defaultTheme = {
       light5: '#F5F5F8',
     },
     grayscale: {
-      base: '#666666',
+      base: '#22252B14',
       dark1: '#323232',
       dark2: '#000000',
       light1: '#B2B2B2',

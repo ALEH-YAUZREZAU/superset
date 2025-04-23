@@ -27,7 +27,7 @@ const StyledDiv = styled.div`
   width: 50%;
   label {
     color: ${({ theme }) => theme.colors.grayscale.base};
-    text-transform: uppercase;
+    text-transform: none !important;
   }
 `;
 

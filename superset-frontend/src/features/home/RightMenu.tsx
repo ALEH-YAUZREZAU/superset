@@ -34,8 +34,6 @@ import {
 } from '@superset-ui/core';
 import { MainNav as Menu } from 'src/components/Menu';
 import { Tooltip } from 'src/components/Tooltip';
-import Icons from 'src/components/Icons';
-import Label from 'src/components/Label';
 import { findPermission } from 'src/utils/findPermission';
 import { isUserAdmin } from 'src/dashboard/util/permissionUtils';
 import {
@@ -64,7 +62,11 @@ const versionInfoStyles = (theme: SupersetTheme) => css`
   white-space: nowrap;
 `;
 const StyledI = styled.div`
-  color: ${({ theme }) => theme.colors.primary.dark1};
+  color: ${({ theme }) => theme.colors.primary.base};
+  &.fa-plus::before {
+    padding: 8px;
+    font-size: 20px;
+  }
 `;
 
 const styledDisabled = (theme: SupersetTheme) => css`
@@ -77,13 +79,8 @@ const styledDisabled = (theme: SupersetTheme) => css`
 
 const StyledDiv = styled.div<{ align: string }>`
   display: flex;
-  flex-direction: row;
-  justify-content: ${({ align }) => align};
-  align-items: center;
-  margin-right: ${({ theme }) => theme.gridUnit}px;
-  .ant-menu-submenu-title > svg {
-    top: ${({ theme }) => theme.gridUnit * 5.25}px;
-  }
+  justify-content: flex-end;
+  padding: 0;
 `;
 
 const StyledMenuItemWithIcon = styled.div`
@@ -96,10 +93,6 @@ const StyledMenuItemWithIcon = styled.div`
 const StyledAnchor = styled.a`
   padding-right: ${({ theme }) => theme.gridUnit}px;
   padding-left: ${({ theme }) => theme.gridUnit}px;
-`;
-
-const tagStyles = (theme: SupersetTheme) => css`
-  color: ${theme.colors.grayscale.light5};
 `;
 
 const styledChildMenu = (theme: SupersetTheme) => css`
@@ -116,7 +109,6 @@ const RightMenu = ({
   settings,
   navbarRight,
   isFrontendRoute,
-  environmentTag,
   setQuery,
 }: RightMenuProps & {
   setQuery: ({
@@ -350,20 +342,6 @@ const RightMenu = ({
           onDatabaseAdd={handleDatabaseAdd}
         />
       )}
-      {environmentTag?.text && (
-        <Label
-          css={{ borderRadius: `${theme.gridUnit * 125}px` }}
-          color={
-            /^#(?:[0-9a-f]{3}){1,2}$/i.test(environmentTag.color)
-              ? environmentTag.color
-              : environmentTag.color
-                  .split('.')
-                  .reduce((o, i) => o[i], theme.colors)
-          }
-        >
-          <span css={tagStyles}>{environmentTag.text}</span>
-        </Label>
-      )}
       <Menu
         selectable={false}
         mode="horizontal"
@@ -371,74 +349,9 @@ const RightMenu = ({
         onOpenChange={onMenuOpen}
       >
         {RightMenuExtension && <RightMenuExtension />}
-        {!navbarRight.user_is_anonymous && showActionDropdown && (
-          <SubMenu
-            data-test="new-dropdown"
-            title={
-              <StyledI data-test="new-dropdown-icon" className="fa fa-plus" />
-            }
-            icon={<Icons.TriangleDown />}
-          >
-            {dropdownItems?.map?.(menu => {
-              const canShowChild = menu.childs?.some(
-                item => typeof item === 'object' && !!item.perm,
-              );
-              if (menu.childs) {
-                if (canShowChild) {
-                  return (
-                    <SubMenu
-                      key={`sub2_${menu.label}`}
-                      className="data-menu"
-                      title={menuIconAndLabel(menu)}
-                    >
-                      {menu?.childs?.map?.((item, idx) =>
-                        typeof item !== 'string' && item.name && item.perm ? (
-                          <Fragment key={item.name}>
-                            {idx === 3 && <Menu.Divider />}
-                            {buildMenuItem(item)}
-                          </Fragment>
-                        ) : null,
-                      )}
-                    </SubMenu>
-                  );
-                }
-                if (!menu.url) {
-                  return null;
-                }
-              }
-              return (
-                findPermission(
-                  menu.perm as string,
-                  menu.view as string,
-                  roles,
-                ) && (
-                  <Menu.Item key={menu.label}>
-                    {isFrontendRoute(menu.url) ? (
-                      <Link to={menu.url || ''}>
-                        <i
-                          data-test={`menu-item-${menu.label}`}
-                          className={`fa ${menu.icon}`}
-                        />{' '}
-                        {menu.label}
-                      </Link>
-                    ) : (
-                      <a href={menu.url}>
-                        <i
-                          data-test={`menu-item-${menu.label}`}
-                          className={`fa ${menu.icon}`}
-                        />{' '}
-                        {menu.label}
-                      </a>
-                    )}
-                  </Menu.Item>
-                )
-              );
-            })}
-          </SubMenu>
-        )}
         <SubMenu
           title={t('Settings')}
-          icon={<Icons.TriangleDown iconSize="xl" />}
+          style={{ fontSize: 16, fontWeight: 500, padding: 0, marginRight: 16 }}
         >
           {settings?.map?.((section, index) => [
             <Menu.ItemGroup key={`${section.label}`} title={section.label}>
@@ -511,6 +424,71 @@ const RightMenu = ({
             </Menu.ItemGroup>,
           ]}
         </SubMenu>
+        {!navbarRight.user_is_anonymous && showActionDropdown && (
+          <SubMenu
+            data-test="new-dropdown"
+            title={
+              <StyledI data-test="new-dropdown-icon" className="fa fa-plus" />
+            }
+          >
+            {dropdownItems?.map?.(menu => {
+              const canShowChild = menu.childs?.some(
+                item => typeof item === 'object' && !!item.perm,
+              );
+              if (menu.childs) {
+                if (canShowChild) {
+                  return (
+                    <SubMenu
+                      key={`sub2_${menu.label}`}
+                      className="data-menu"
+                      title={menuIconAndLabel(menu)}
+                    >
+                      {menu?.childs?.map?.((item, idx) =>
+                        typeof item !== 'string' && item.name && item.perm ? (
+                          <Fragment key={item.name}>
+                            {idx === 3 && <Menu.Divider />}
+                            {buildMenuItem(item)}
+                          </Fragment>
+                        ) : null,
+                      )}
+                    </SubMenu>
+                  );
+                }
+                if (!menu.url) {
+                  return null;
+                }
+              }
+              return (
+                findPermission(
+                  menu.perm as string,
+                  menu.view as string,
+                  roles,
+                ) && (
+                  <Menu.Item key={menu.label}>
+                    {isFrontendRoute(menu.url) ? (
+                      <Link to={menu.url || ''}>
+                        <i
+                          data-test={`menu-item-${menu.label}`}
+                          className={`fa ${menu.icon}`}
+                        />{' '}
+                        {menu.label}
+                      </Link>
+                    ) : (
+                      <a href={menu.url}>
+                        <i
+                          data-test={`menu-item-${menu.label}`}
+                          className={`fa ${menu.icon}`}
+                        />{' '}
+                        {menu.label}
+                      </a>
+                    )}
+                  </Menu.Item>
+                )
+              );
+            })}
+          </SubMenu>
+        )}
+
         {navbarRight.show_language_picker && (
           <LanguagePicker
             locale={navbarRight.locale}

@@ -95,13 +95,13 @@ const StyledNav = styled(AntdMenu)`
 `;
 
 const StyledSubMenu = styled(AntdMenu.SubMenu)`
-  color: ${({ theme }) => theme.colors.grayscale.dark1};
+  color: ${({ theme }) => theme.colors.primary.base};
   border-bottom: none;
   .ant-menu-submenu-open,
   .ant-menu-submenu-active {
     background-color: ${({ theme }) => theme.colors.primary.light5};
     .ant-menu-submenu-title {
-      color: ${({ theme }) => theme.colors.grayscale.dark1};
+      color: ${({ theme }) => theme.colors.primary.base};
       background-color: ${({ theme }) => theme.colors.primary.light5};
       border-bottom: none;
       margin: 0;
@@ -111,36 +111,14 @@ const StyledSubMenu = styled(AntdMenu.SubMenu)`
       }
     }
   }
-  .ant-menu-submenu-title {
-    position: relative;
-    top: ${({ theme }) => -theme.gridUnit - 3}px;
-    &:after {
-      content: '';
-      position: absolute;
-      bottom: -3px;
-      left: 50%;
-      width: 0;
-      height: 3px;
-      opacity: 0;
-      transform: translateX(-50%);
-      transition: all ${({ theme }) => theme.transitionTiming}s;
-      background-color: ${({ theme }) => theme.colors.primary.base};
-    }
-  }
   .ant-menu-submenu-arrow {
     top: 67%;
   }
   & > .ant-menu-submenu-title {
-    padding: 0 ${({ theme }) => theme.gridUnit * 6}px 0
-      ${({ theme }) => theme.gridUnit * 3}px !important;
     span[role='img'] {
       position: absolute;
       right: ${({ theme }) => -theme.gridUnit + -2}px;
       top: ${({ theme }) => theme.gridUnit * 5.25}px;
-      svg {
-        font-size: ${({ theme }) => theme.gridUnit * 6}px;
-        color: ${({ theme }) => theme.colors.grayscale.base};
-      }
     }
     & > span {
       position: relative;
@@ -148,6 +126,12 @@ const StyledSubMenu = styled(AntdMenu.SubMenu)`
     }
     &:hover {
       color: ${({ theme }) => theme.colors.primary.base};
+      margin-bottom: none;
+      &.ant-menu-submenu-selected {
+    border: solid 1px;
+  } {
+        color: ${({ theme }) => theme.colors.primary.base};
+      }
     }
   }
 `;

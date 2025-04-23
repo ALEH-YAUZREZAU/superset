@@ -286,7 +286,7 @@ AUTH_RATE_LIMIT = "5 per second"
 APP_NAME = "Superset"
 
 # Specify the App icon
-APP_ICON = "/static/assets/images/superset-logo-horiz.png"
+APP_ICON = "/static/assets/images/vtb-logo-horiz.png"
 
 # Specify where clicking the logo would take the user
 # e.g. setting it to '/' would take the user to '/superset/welcome/'
@@ -344,30 +344,30 @@ PUBLIC_ROLE_LIKE: str | None = None
 # Babel config for translations
 # ---------------------------------------------------
 # Setup default language
-BABEL_DEFAULT_LOCALE = "en"
+BABEL_DEFAULT_LOCALE = "ru"
 # Your application default translation path
 BABEL_DEFAULT_FOLDER = "superset/translations"
 # The allowed translation for your app
 LANGUAGES = {
-    "en": {"flag": "us", "name": "English"},
-    "es": {"flag": "es", "name": "Spanish"},
-    "it": {"flag": "it", "name": "Italian"},
-    "fr": {"flag": "fr", "name": "French"},
-    "zh": {"flag": "cn", "name": "Chinese"},
-    "ja": {"flag": "jp", "name": "Japanese"},
-    "de": {"flag": "de", "name": "German"},
-    "pt": {"flag": "pt", "name": "Portuguese"},
-    "pt_BR": {"flag": "br", "name": "Brazilian Portuguese"},
+    # "en": {"flag": "us", "name": "English"},
+    # "es": {"flag": "es", "name": "Spanish"},
+    # "it": {"flag": "it", "name": "Italian"},
+    # "fr": {"flag": "fr", "name": "French"},
+    # "zh": {"flag": "cn", "name": "Chinese"},
+    # "ja": {"flag": "jp", "name": "Japanese"},
+    # "de": {"flag": "de", "name": "German"},
+    # "pt": {"flag": "pt", "name": "Portuguese"},
+    # "pt_BR": {"flag": "br", "name": "Brazilian Portuguese"},
     "ru": {"flag": "ru", "name": "Russian"},
-    "ko": {"flag": "kr", "name": "Korean"},
-    "sk": {"flag": "sk", "name": "Slovak"},
-    "sl": {"flag": "si", "name": "Slovenian"},
-    "nl": {"flag": "nl", "name": "Dutch"},
-    "uk": {"flag": "uk", "name": "Ukranian"},
+    # "ko": {"flag": "kr", "name": "Korean"},
+    # "sk": {"flag": "sk", "name": "Slovak"},
+    # "sl": {"flag": "si", "name": "Slovenian"},
+    # "nl": {"flag": "nl", "name": "Dutch"},
+    # "uk": {"flag": "uk", "name": "Ukranian"},
 }
 # Turning off i18n by default as translation in most languages are
 # incomplete and not well maintained.
-LANGUAGES = {}
+# LANGUAGES = {}
 
 
 # Override the default d3 locale format
@@ -571,7 +571,23 @@ COMMON_BOOTSTRAP_OVERRIDES_FUNC: Callable[
 #     }]
 
 # This is merely a default
-EXTRA_CATEGORICAL_COLOR_SCHEMES: list[dict[str, Any]] = []
+EXTRA_CATEGORICAL_COLOR_SCHEMES = [
+    {
+        "id": 'VTBColors',
+        "description": '',
+        "label": 'VTB Visualization Colors',
+        "isDefault": True,
+         "colors": [
+        "rgba(194, 65, 0, 0.24)",
+        "rgba(248, 245, 189, 1)",
+        "rgba(6, 99, 239, 0.32)",
+        "rgba(242, 235, 255, 1)",
+        "rgba(214, 255, 231, 1)",
+        "rgba(6, 155, 239, 0.24)",
+        "rgba(0, 128, 79, 0.32)",
+        "rgba(103, 114, 131, 0.32)"
+      ]
+    }]
 
 # THEME_OVERRIDES is used for adding custom theme to superset
 # example code for "My theme" custom scheme
