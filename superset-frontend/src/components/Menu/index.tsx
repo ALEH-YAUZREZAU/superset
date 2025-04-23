@@ -61,13 +61,13 @@ const MenuItem = styled(AntdMenu.Item)`
       display: inline-block;
       width: 100%;
     }
+
     transition-duration: 0s;
   }
 `;
 
 const StyledNav = styled(AntdMenu)`
-  line-height: 51px;
-  border: none;
+  height: 52px !important;
 
   & > .ant-menu-item,
   & > .ant-menu-submenu {
@@ -127,11 +127,6 @@ const StyledSubMenu = styled(AntdMenu.SubMenu)`
     &:hover {
       color: ${({ theme }) => theme.colors.primary.base};
       margin-bottom: none;
-      &.ant-menu-submenu-selected {
-    border: solid 1px;
-  } {
-        color: ${({ theme }) => theme.colors.primary.base};
-      }
     }
   }
 `;

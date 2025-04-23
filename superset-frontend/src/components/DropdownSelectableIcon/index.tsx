@@ -86,7 +86,7 @@ const StyleMenuItem = styled(Menu.Item)<{ divider?: boolean }>`
     width: 100%;
   }
   border-bottom: ${({ divider, theme }) =>
-    divider ? `1px solid ${theme.colors.grayscale.light3};` : 'none;'};
+    divider ? `1px solid ${theme.colors.grayscale.light3}` : 'none'};
 `;
 
 const StyleSubmenuItem = styled.div`

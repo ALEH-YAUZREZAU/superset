@@ -81,7 +81,7 @@ const defaultTheme = {
       light5: '#F5F5F8',
     },
     grayscale: {
-      base: '#22252B14',
+      base: '#22252BB2',
       dark1: '#323232',
       dark2: '#000000',
       light1: '#B2B2B2',
@@ -89,6 +89,7 @@ const defaultTheme = {
       light3: '#F0F0F0',
       light4: '#F7F7F7',
       light5: '#FFFFFF',
+      light6: '#22252B14',
     },
     error: {
       base: '#E04355',

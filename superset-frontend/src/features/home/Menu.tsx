@@ -91,9 +91,9 @@ const StyledHeader = styled.header`
         font-weight: 500;
         top: ${-theme.gridUnit - 3}px;
         padding: 0 ${theme.gridUnit * 6}px 0 ${theme.gridUnit * 3}px !important;
-         svg {
-        font-size: ${theme.gridUnit * 6}px;
-      }
+          svg {
+            font-size: ${theme.gridUnit * 6}px;
+          }
         }
       }
 
@@ -125,7 +125,7 @@ const StyledHeader = styled.header`
 
           &:hover {
             color: ${theme.colors.grayscale.dark1};
-            background-color: ${theme.colors.grayscale.base};
+            background-color: ${theme.colors.grayscale.light6};
             border-top-left-radius: 8px;
             border-top-right-radius: 8px;
             border-bottom: none;
@@ -135,10 +135,15 @@ const StyledHeader = styled.header`
 `;
 const globalStyles = (theme: SupersetTheme) => css`
   .ant-menu-submenu.ant-menu-submenu-popup.ant-menu.ant-menu-light.ant-menu-submenu-placement-bottomLeft {
-    border-radius: 0px;
+    border-radius: 8px;
   }
   .ant-menu-submenu.ant-menu-submenu-popup.ant-menu.ant-menu-light {
-    border-radius: 0px;
+    border-radius: 8px;
+    top: 71px !important;
+  }
+  .ant-menu.ant-menu-sub.ant-menu-vertical {
+    border-radius: 8px;
+    top: 71px !important;
   }
   .ant-menu-vertical > .ant-menu-submenu.data-menu > .ant-menu-submenu-title {
     height: 28px;
