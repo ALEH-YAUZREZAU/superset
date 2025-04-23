@@ -47,14 +47,14 @@ const StyledHeader = styled.div`
         border-bottom: transparent;
       }
     }
-  }
-  .css-1sd38vn-button + .superset-button {
-    padding: 8px;
-    margin-left: 16px;
-  }
+    .superset-button-link {
+      padding: 8px !important;
+      margin-left: 16px;
+    }
 
-  .css-nhg03w-button + .superset-button {
-    margin-left: 16px;
+    .superset-button-primary {
+      margin-left: 16px;
+    }
   }
 
   .nav-right-collapse {
