@@ -118,7 +118,7 @@ const StyledSubMenu = styled(AntdMenu.SubMenu)`
     span[role='img'] {
       position: absolute;
       right: ${({ theme }) => -theme.gridUnit + -2}px;
-      top: ${({ theme }) => theme.gridUnit * 5.25}px;
+      top: 18px;
     }
     & > span {
       position: relative;
