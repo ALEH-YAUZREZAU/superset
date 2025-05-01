@@ -235,7 +235,7 @@
     "@storybook/addon-mdx-gfm": "^7.6.15",
     "@storybook/addons": "^7.6.13",
     "@storybook/client-api": "^7.6.13",
-    "@storybook/components": "^7.6.13",
+    "@storybook/components": "^8.6.12",
     "@storybook/react": "^7.6.13",
     "@storybook/react-webpack5": "^7.6.13",
     "@svgr/webpack": "^8.0.1",
