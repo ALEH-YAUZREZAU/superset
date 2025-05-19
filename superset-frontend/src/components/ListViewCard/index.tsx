@@ -31,28 +31,20 @@ const ActionsWrapper = styled.div`
 
 const StyledCard = styled(AntdCard)`
   ${({ theme }) => `
-    border: 1px solid ${theme.colors.grayscale.light2};
-    border-radius: ${theme.gridUnit}px;
+    border-radius: ${theme.gridUnit * 2}px;
+    border: none;
     overflow: hidden;
+    width: 268px;
 
     .ant-card-body {
       padding: ${theme.gridUnit * 4}px
-        ${theme.gridUnit * 2}px;
     }
     .ant-card-meta-detail > div:not(:last-child) {
-      margin-bottom: 0;
+      margin-bottom: ${theme.gridUnit}px;
     }
     .gradient-container {
       position: relative;
       height: 100%;
-    }
-    &:hover {
-      box-shadow: 8px 8px 28px 0px ${theme.colors.grayscale.light1};
-      transition: box-shadow ${theme.transitionTiming}s ease-in-out;
-
-      .cover-footer {
-        transform: translateY(0);
-      }
     }
   `}
 `;
@@ -100,8 +92,11 @@ const TitleLink = styled.span`
 
 const TitleRight = styled.span`
   position: absolute;
-  right: -1px;
+  right: 8px;
   bottom: ${({ theme }) => theme.gridUnit}px;
+  & > * {
+    border-radius: ${({ theme }) => theme.gridUnit}px !important;
+  }
 `;
 
 const CoverFooter = styled.div`
@@ -153,7 +148,7 @@ interface CardProps {
   imgURL?: string;
   imgFallbackURL?: string;
   imgPosition?: BackgroundPosition;
-  description: string;
+  description?: string | null;
   loading?: boolean;
   titleRight?: React.ReactNode;
   coverLeft?: React.ReactNode;

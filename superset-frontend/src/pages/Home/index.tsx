@@ -104,9 +104,6 @@ const WelcomeContainer = styled.div`
   .ant-card-meta-description {
     margin-top: ${({ theme }) => theme.gridUnit}px;
   }
-  .ant-card.ant-card-bordered {
-    border: 1px solid ${({ theme }) => theme.colors.grayscale.light2};
-  }
   .ant-collapse-item .ant-collapse-content {
     margin-bottom: ${({ theme }) => theme.gridUnit * -6}px;
   }

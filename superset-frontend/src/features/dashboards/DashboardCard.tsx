@@ -60,8 +60,15 @@ function DashboardCard({
   const canEdit = hasPerm('can_write');
   const canDelete = hasPerm('can_write');
   const canExport = hasPerm('can_export');
-
   const theme = useTheme();
+  const formattedDescription = dashboard.changed_on_utc
+    ? new Date(dashboard.changed_on_utc).toLocaleDateString('ru-RU', {
+        timeZone: 'UTC',
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+      })
+    : null;
   const menu = (
     <Menu>
       {canEdit && openDashboardEditModal && (
@@ -130,7 +137,7 @@ function DashboardCard({
         linkComponent={Link}
         imgURL={dashboard.thumbnail_url}
         imgFallbackURL="/static/assets/images/dashboard-card-fallback.svg"
-        description={t('Modified %s', dashboard.changed_on_delta_humanized)}
+        description={formattedDescription}
         coverLeft={<FacePile users={dashboard.owners || []} />}
         actions={
           <ListViewCard.Actions

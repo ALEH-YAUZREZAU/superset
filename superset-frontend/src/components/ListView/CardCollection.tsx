@@ -31,28 +31,17 @@ interface CardCollectionProps {
 }
 
 const CardContainer = styled.div<{ showThumbnails?: boolean }>`
-  ${({ theme, showThumbnails }) => `
-    display: grid;
-    grid-gap: ${theme.gridUnit * 12}px ${theme.gridUnit * 4}px;
-    grid-template-columns: repeat(auto-fit, 300px);
-    margin-top: ${theme.gridUnit * -6}px;
-    padding: ${
-      showThumbnails
-        ? `${theme.gridUnit * 8 + 3}px ${theme.gridUnit * 9}px`
-        : `${theme.gridUnit * 8 + 1}px ${theme.gridUnit * 9}px`
-    };
-  `}
+  display: flex;
+  align-items: flex-start;
+  align-content: flex-start;
+  gap: 16px;
+  align-self: stretch;
+  flex-wrap: wrap;
+  width: 1120px;
+  margin: 0 auto 32px;
 `;
 
-const CardWrapper = styled.div`
-  border: 2px solid transparent;
-  &.card-selected {
-    border: 2px solid ${({ theme }) => theme.colors.primary.base};
-  }
-  &.bulk-select {
-    cursor: pointer;
-  }
-`;
+const CardWrapper = styled.div``;
 
 export default function CardCollection({
   bulkSelectEnabled,
